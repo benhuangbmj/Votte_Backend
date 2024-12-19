@@ -30,6 +30,11 @@ app.use("/api/votes", votesRouter);
 app.get("/", (req, res) => {
     res.send("Welcome to the Votte API!");
 });
+app.get("/migration", (req, res) => {
+    const stdout = execSync("npm run db");
+    console.log(stdout);
+    res.send("migration!");
+});
 
 // Catch-all route for undefined paths (404 handling)
 app.use((req, res) => {
@@ -43,12 +48,6 @@ pool.query("SELECT NOW()", (err, res) => {
     } else {
         console.log("PostgreSQL connected:", res.rows[0]);
     }
-});
-
-app.get("/migration", (req, res) => {
-    const stdout = execSync("npm run db");
-    console.log(stdout);
-    res.send("migration!");
 });
 
 // Start the server
