@@ -47,7 +47,8 @@ pool.query("SELECT NOW()", (err, res) => {
 
 app.get("/migration", (req, res) => {
     const stdout = execSync("npm run db");
-    res.send(stdout);
+    console.log(stdout);
+    res.send("migration!");
 });
 
 // Start the server
