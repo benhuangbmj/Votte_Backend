@@ -1,5 +1,5 @@
 import { relations } from "drizzle-orm/relations";
-import { events, ideas, likes } from "./schema";
+import { events, ideas, likes, votes } from "./schema";
 
 export const ideasRelations = relations(ideas, ({one, many}) => ({
 	event: one(events, {
@@ -7,6 +7,7 @@ export const ideasRelations = relations(ideas, ({one, many}) => ({
 		references: [events.id]
 	}),
 	likes: many(likes),
+	votes: many(votes),
 }));
 
 export const eventsRelations = relations(events, ({many}) => ({
@@ -16,6 +17,13 @@ export const eventsRelations = relations(events, ({many}) => ({
 export const likesRelations = relations(likes, ({one}) => ({
 	idea: one(ideas, {
 		fields: [likes.ideaId],
+		references: [ideas.id]
+	}),
+}));
+
+export const votesRelations = relations(votes, ({one}) => ({
+	idea: one(ideas, {
+		fields: [votes.ideaId],
 		references: [ideas.id]
 	}),
 }));
