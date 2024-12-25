@@ -1,5 +1,11 @@
 {
-    "version": 2,
-    "framework": null,
-    "devCommand":"npm start"
+  "version": 2,
+  "buildCommand": "mkdir -p /vercel/path0/public && touch /vercel/path0/public/placeholder && npm run db",
+  "functions": {
+    "api/index.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
