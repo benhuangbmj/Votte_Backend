@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon index.js",
     "db": "drizzle-kit push",
-    "db-studio": "drizzle-kit studio"
+    "db-studio": "drizzle-kit studio",
+    "test": "jest -i"
   },
   "keywords": [],
   "author": "",
